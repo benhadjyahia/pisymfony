@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Title{% endblock %}
+
+{% block body %}
+
+    <button type="button" class="btn btn-secondary"><a href="{{ path('new_categorie')}}" class="nev-link">ajouter Categorie</a></button>
+    {% if Category %}
+        <table id="Category" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre Categorie</th>
+                <th>description</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for categorieSalle in Category %}
+                <tr>
+                    <td>{{ categorieSalle.titre }}</td>
+                    <td>{{ categorieSalle.description }}</td>
+
+
+
+
+                    <td>
+                        <a href="/editcatSalle/{{ categorieSalle.id }}" class="btn btn-dark">Edit</a>
+                        <a href="/deleteCat/{{ categorieSalle.id }}" class="btn btn-danger" onclick="return confirm('confirmer')">Delete</a>
+                    </td>
+                </tr>
+
+
+
+
+
+            {% endfor %}
+            </tbody>
+            <tbody>
+
+
+
+
+            </tbody>
+        </table>
+    {% else %}
+        <p>No articles to display</p>
+    {% endif %}
+
+
+    <button type="button" class="btn btn-secondary"><a href="{{ path('base_backoffice')}}" class="nev-link">Return</a></button>
+{% endblock %}
+
+
+

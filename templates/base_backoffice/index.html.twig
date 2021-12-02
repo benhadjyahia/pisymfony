@@ -1,0 +1,31 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello BaseBackofficeController!{% endblock %}
+
+{% block body %}
+<div class="section small_pt pb_70">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="heading_s1 text-center">
+                    <h2>Gestion Des Salle De Sports</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="tab-style1">
+                    <ul class="nav nav-tabs justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-secondary"  ><a href="{{ path('dashbordCatSalle')}}" class="nev-link">Manager Category</a></button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-secondary"><a href="{{ path('Fdashboard_salle')}}" class="nev-link">Manager Salles</a></button>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                {% endblock %}

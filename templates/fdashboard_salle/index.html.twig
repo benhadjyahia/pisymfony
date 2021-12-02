@@ -1,0 +1,56 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Title{% endblock %}
+
+{% block body %}
+    <button type="button" class="btn btn-secondary"><a href="{{ path('new_salleA')}}" class="nev-link">ajouter salle</a></button>
+
+    {% if sallesS %}
+        <table id="sallesS" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom Salle</th>
+                <th>Adresse Salle</th>
+                <th>price</th>
+                <th>image Salle</th>
+                <th>category</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for SalleSport in sallesS %}
+                <tr>
+                    <td>{{ SalleSport.nomSalle }}</td>
+                    <td>{{ SalleSport.adressSalle }}</td>
+                    <td>{{ SalleSport.price }}</td>
+                    <td><img height="100" width="100" src="{{asset ('images/salles/'~ SalleSport.imageName)}} "></td>
+                    <td>{{ SalleSport.category.titre }}</td>
+
+
+
+                    <td>
+                        <a href="/editSalle/{{ SalleSport.id }}" class="btn btn-dark">Edit</a>
+                        <a href="/showSalle/{{ SalleSport.id }}" class="btn btn-light">show</a>
+                        <a href="/deleteSalle/{{ SalleSport.id }}" class="btn btn-danger" onclick="return confirm('confirmer')">Delete</a>
+                    </td>
+                </tr>
+
+
+
+
+
+            {% endfor %}
+            </tbody>
+            <tbody>
+
+
+
+
+            </tbody>
+        </table>
+    {% else %}
+        <p>No articles to display</p>
+    {% endif %}
+    <button type="button" class="btn btn-secondary"><a href="{{ path('base_backoffice')}}" class="nev-link">Return</a></button>
+
+{% endblock %}
+
