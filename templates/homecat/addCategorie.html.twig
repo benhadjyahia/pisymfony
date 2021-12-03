@@ -1,0 +1,12 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New SALLE{% endblock %}
+
+{% block body %}
+    {{ form_start(form, {attr:{'novalidate': 'novalidate' }}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <button class="btn">
+        <a class="fa-list" style="color: #FFFFFF" href="{{ path('evenetCategorie') }}"> retour </a>
+    </button>
+{% endblock %}

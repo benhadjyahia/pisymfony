@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Title{% endblock %}
+
+{% block body %}
+
+
+    {% if Category %}
+        <table id="Category" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom Category</th>
+                <th>description Category</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for categoryevenement in Category %}
+                <tr>
+                    <td>{{ categoryevenement.titre }}</td>
+                    <td>{{ categoryevenement.description }}</td>
+
+
+
+
+                    <td>
+
+
+                        <a href="/cat_delete/{{ categoryevenement.id }}" class="btn btn-danger" onclick="return confirm('confirmer')">Delete</a>
+                    </td>
+                </tr>
+
+
+
+
+
+            {% endfor %}
+            </tbody>
+            <tbody>
+
+
+
+
+            </tbody>
+        </table>
+    {% else %}
+        <p>No articles to display</p>
+    {% endif %}
+    <button class="btn">
+        <a class="fas fa-plus" style="color: #FFFFFF" href="{{ path('new_categorie') }}"> ajouter </a>
+    </button>
+
+{% endblock %}
+

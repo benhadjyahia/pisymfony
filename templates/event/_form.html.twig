@@ -1,0 +1,6 @@
+<div class="form-group">
+{{ form_start(form,{attr:{'novalidate': 'novalidate' }})}}
+    {{ form_widget(form) }}
+    <button class="btn"> <a class="fas fa-plus" {{ button_label|default('') }}> ajouter</a>  </button>
+{{ form_end(form) }}
+</div>
