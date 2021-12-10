@@ -1,0 +1,51 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Exercice index{% endblock %}
+
+{% block body %}
+    <h1>Exercice </h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdEx</th>
+                <th>NomEx</th>
+                <th>CatEx</th>
+                <th>NumSer</th>
+                <th>NumRep</th>
+                <th>img</th>
+                <th>show</th>
+                <th>edit</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for exercice in exercices %}
+            <tr>
+                <td>{{ exercice.idEx }}</td>
+                <td>{{ exercice.nomEx }}</td>
+                <td>{{ exercice.categorie }}</td>
+                <td>{{ exercice.numSer }}</td>
+                <td>{{ exercice.numRep }}</td>
+                <td>{{ exercice.numRep }}</td>
+                <td><img src="{{vich_uploader_asset(exercice, 'imageFile')}}" ></td>
+
+
+
+                <td>
+                    <a class="fa fa-bars" href="{{ path('exercice_show', {'idEx': exercice.idEx}) }}"></a>
+                </td>
+                <td><a class="fa fa-edit" href="{{ path('exercice_edit', {'idEx': exercice.idEx}) }}"></a></td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        {{ knp_pagination_render(exercices) }}
+        </tbody>
+    </table>
+
+    <a href="{{ path('exercice_new') }}">Create new</a>
+{% endblock %}

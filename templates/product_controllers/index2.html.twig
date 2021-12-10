@@ -1,0 +1,75 @@
+{% extends 'base3.html.twig' %}
+{% block title %}Product index{% endblock %}
+{% block body %}
+
+{{ form_start(form) }}
+    <div class="form-row align-items-end">
+        <div class="col">
+            {{ form_row(form.nom) }}
+        </div >
+         <div class="col">
+             <div class="form-group">
+                 <button type="submit" class="btn btn-success">Recherche products</button>
+             </div>
+         </div>
+    </div>
+    {{ form_end(form) }}
+    <!-- top-area End -->
+<section id="feature" class="feature">
+    <div class="container">
+        <div class="section-header">
+            <div class="feature-content">
+                <div class="container">
+                    <div class="section-header">
+                    </div><!--/.section-header-->
+                    <div class="feature-content">
+                        <div class="boxs">
+                            <div class="row">
+    {% for product in products %}
+                                <div class="col-sm-3">
+                                    <div class="single-feature">
+                                        <img  src="{{vich_uploader_asset(product, 'imageFile')}}">
+                                        <div class="single-feature-txt text-center">
+                                            <p>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+                                                <span class="feature-review">(45 review)</span>
+                                            </p>
+                                                <h5>{{ product.NomP }} </h5>
+                                                <h5>{{ product.MarqueP }}</h5>
+                                                <h5>{{ product.PrixP }} D</h5>
+                                                <h5>{{ product.categorie }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+    {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.container-->
+            </div>
+        </div>
+    </div><!--/.container-->
+
+</section>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

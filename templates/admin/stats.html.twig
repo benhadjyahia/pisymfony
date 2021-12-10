@@ -1,0 +1,66 @@
+
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+{% block body %}
+    <div style="margin-top:2%;">
+        <table>
+            <tr ><a style="margin-left:40%;color: #c69500;font-size:30px" href="{{ path('category_c_index') }}">categories</a> </tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('planning_index') }}">Planning</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('main') }}">calendrier</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('contactC') }}">contact</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('stats') }}">statistiques</a></tr>
+        </table>
+    </div>
+    <div class="container">
+        <h1 style="width:180%;margin-top:5%; margin-left: 30%">
+            <span style="color:#66CC66">S</span>
+            <sub>  <span style="color: #3f51b5">t</span></sub>
+            <span style="color:#FFCCCC">a</span>
+            <sub>  <span style="color:#FF0066">t</span></sub>
+            <span style="color:#FF0000">i</span>
+            <sub>   <span style="color:#66CC66">s</span></sub>
+            <span style="color:#3f51b5">t</span>
+            <sub>  <span style="color:#FFCCCC">i</span></sub>
+            <span style="color:#66CC66">q</span>
+            <sub>  <span style="color: #3f51b5">u</span></sub>
+            <span style="color:#FFCCCC">e</span>
+            <sub>  <span style="color:#FF0066">s</span></sub>
+        </h1>
+        <div style="margin-top: 12%">
+        <canvas id="categories" width="400" height="100"></canvas>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>   let ctx = document.querySelector("#categories")
+        let graph = new Chart(categories, {
+            type: "pie",
+            data: {
+                labels: {{ categNom|raw }},
+                datasets: [{
+                    label: "Répartition des catégories",
+                    data: {{ categCount|raw }},
+                    backgroundColor: {{ categColor|raw }}
+                }]
+
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'repartition  des categories'
+                },
+                legend: {
+                    position: 'bottom'
+                }
+
+            }
+        })
+    </script>
+
+{% endblock %}

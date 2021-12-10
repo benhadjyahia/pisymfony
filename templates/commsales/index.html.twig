@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commsales index{% endblock %}
+
+{% block body %}
+    <h1>Commsales index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Comment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commsale in commsales %}
+            <tr>
+                <td>{{ commsale.id }}</td>
+                <td>{{ commsale.nom }}</td>
+                <td>{{ commsale.comment }}</td>
+                <td>
+                    <a href="{{ path('commsales_show', {'id': commsale.id}) }}">show</a>
+                    <a href="{{ path('commsales_edit', {'id': commsale.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('commsales_new') }}">Create new</a>
+{% endblock %}

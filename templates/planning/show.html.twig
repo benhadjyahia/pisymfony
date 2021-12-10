@@ -1,0 +1,71 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Planning{% endblock %}
+
+{% block body %}
+
+    <div >
+    <h1  style="width:50%;margin:auto">
+        <span style="color:#66CC66">P</span>
+        <sub>  <span style="color: #3f51b5">L</span></sub>
+        <span style="color:#FFCCCC">A</span>
+        <sub>  <span style="color:#FF0066">N</span></sub>
+        <span style="color:#FF0000">N</span>
+        <sub>   <span style="color:#66CC66">I</span></sub>
+        <span style="color:#3f51b5">N</span>
+        <sub>  <span style="color:#FFCCCC">G</span></sub>
+
+    </h1>
+    </div>
+    <div style="margin-top: 5%">
+    <table class="table">
+        <tbody style=";color: #8a6d3b">
+            <tr>
+                <th>Id</th>
+                <td>{{ planning.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ planning.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ planning.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ planning.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ planning.email }}</td>
+            </tr>
+            <tr>
+                <th>start</th>
+                <td>{{ planning.start ? planning.start|date('Y-m-d H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>end</th>
+                <td>{{ planning.start ? planning.start|date('Y-m-d H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ planning.cin }}</td>
+            </tr>
+        </tbody>
+    </table>
+        <table style="mso-cellspacing: 30px">
+
+            <tr>
+    <a   class="fa fa-edit" href="{{ path('planning_edit', {'id': planning.id}) }} "style="font-size:50px;margin-left: 25%"></a  >
+            </tr>
+            <tr >
+                {{ include('planning/_delete_form.html.twig') }}
+            </tr>
+
+
+
+        </table>
+        <a class=" fa fa-home" href="{{ path('planning_index') }}" style="font-size:50px;margin-left: 5%"></a>
+</div>
+{% endblock %}

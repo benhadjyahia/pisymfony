@@ -1,0 +1,59 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Product index{% endblock %}
+{% block body %}
+
+    <h2><a style=" color: #c69500;" href="{{ path('product_controllers_listpdf')}}"> IMPRIMER </a></h2>
+    <h2> <a style=" color: #c69500;"  href="{{ path('category_controllers_index') }}">CATEGORY</a></h2>
+    <h2> <a style=" color: #c69500;"  href="{{ path('product_controllers_index123456') }}">RECHERCHER</a></h2>
+    <h2> <a style=" color: #c69500;" href ="{{ path('product_controllers_new') }}">AJOUTER PRODUITS</a></h2>
+    <div class="container">
+        <h1 style="color: #c69500">Product</h1>
+        <div class="section-header">
+        </div><!--/.section-header-->
+        <div class="feature-content">
+            <div class="boxs">
+                <div class="row">
+    {% for product in products %}
+                    <div class="col-sm-3">
+                        <div class="single-feature">
+                            <div class="single-blog">
+                                <div class="single-blog-img">
+                                    <img  src="{{vich_uploader_asset(product, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto; border-radius: 20px; border: 2px solid yellow; ">
+                                </div>
+                            </div>
+                            <div class="single-feature-txt text-center">
+                                <h3 style="color: #c69500">Nom : {{ product.NomP }}</h3>
+                                <h3 style="color: #c69500">Marque : {{ product.MarqueP }}</h3>
+                                <h3 style="color: #c69500">Prix : {{ product.PrixP }} D</h3>
+                                <h3 style="color: #c69500">Quantite : {{ product.QuantiteP }}</h3>
+                                <h3 style="color: #c69500">categroy : {{ product.categorie }}</h3>
+
+                                <a class="fa fa-bars" href="{{ path('product_controllers_show', {'id': product.id}) }}"></a>
+                                <a class="fa fa-edit" href="{{ path('product_controllers_edit', {'id': product.id}) }}"></a>
+
+                            </div>
+                        </div>
+                    </div>
+    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div><!--/.container-->
+
+    <<div class="pagination">
+    {{ knp_pagination_render(products) }}
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

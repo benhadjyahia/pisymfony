@@ -1,0 +1,260 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FhomeSalleController!{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{asset('asset/style.css')}}">
+
+
+
+
+
+<!-- Latest news section -->
+<div class="latest-news-section">
+    <div class="ln-title">Latest News</div>
+    <div class="news-ticker">
+        <div class="news-ticker-contant">
+            <div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+            <div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+            <div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+        </div>
+    </div>
+</div>
+<!-- Latest news section end -->
+
+
+
+
+
+
+<!-- Page info section -->
+<section class="page-info-section set-bg" data-setbg="sale.jpg">
+    <div class="pi-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-6 text-white">
+
+                    <a style="color: #fb9e00; font-size: xxx-large; " href="http://127.0.0.1:8000/contacti/new" >Contacter</a>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page info section -->
+
+
+
+    <div class="form-row align-items-end" >
+        <div class="col">
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <input id="a" type="text">
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+            $('#a').on('keydown', function(e) {
+                if(e.keyCode != 8) {
+                    sear = $("#a").val() + e.key;
+                }
+            else {
+                    sear = $("#a").val().substring(0,$("#a").val().length - 1);
+                }
+
+                $.ajax({
+                    method: "POST",
+                    url: "http://127.0.0.1:8000/search",
+                    data: { name: sear }
+                })
+                    .done(function( msg ) {
+
+
+                        $("#result").html("");
+                        text =      "<div class='col-12'>"+
+                            "<div class='tab-style1'>"     +
+                            " <ul class='nav nav-tabs justify-content-center' role='tablist'>"   +
+                            " <li class='nav-item'>"+
+
+                            "    </li>"       +
+                            "  <li class='nav-item'>"+
+
+                            "  </li>"+
+                            "  </ul>"     +
+                            "  </div>"+
+
+
+                            " </div>";
+                        if (msg[0].empty == 1) {
+                            t = "Aucun salle ne correspond aux termes de recherche spécifiés";
+
+                            var isContains = $('#result').text().indexOf(t) > -1;
+                            if(!isContains && $("#a").val() != "") {
+                                text = "<div><h3>  Aucun evenement ne correspond aux termes de recherche spécifiés </h3></div>";
+
+                                $("#result").html(text+$("#result").html());
+
+                            }
+                            if(isContains && $("#a").val() == "") {
+                                var ret = $("#result").val().replace(t,'');
+                                $("#result").html(ret); }
+
+
+                        }
+                        text =
+                        $.each(msg, function( index, SalleSport ) {
+
+                            text = text +
+
+
+
+                            "<div class='tab-content'    >"+
+                                "<div class='tab-pane fade show active' id='arrival' role='tabpanel' aria-labelledby='arrival-tab'>"+
+                                    "<div class='row' >"+
+                                        "<div class='col-lg-7 col-md-4 col-6'>"+
+                                            "<div class='product'>"+
+                                                "<div class='salle_img'>"+
+                                                    "<a href=''>"+
+                                                        "<img height='250' width='250' src='images/salles/"+ SalleSport.imageName+" '>"+
+                                                    "</a>"+
+                                                    "<div class='product_action_box'>"+
+                                                        "<ul class='list_none pr_action_btn'>"+
+
+
+                                                            "<li><a href='http://127.0.0.1:8000/showSalleFront/"+SalleSport.id+" ' class=''><i class='icon-magnifier-add'></i></a></li>"+
+
+                                                        "</ul>"+
+                                                    "</div>"+
+                                                "</div>"+
+                                            "</div>"+
+                                        "</div>"+
+
+                            "<div class='product_price'>"+
+                                            "<span class='price'>"+ SalleSport.nomSalle +"</span>"+
+
+                                            "<div class='rating_wrap'>"+
+                                                "<div >"+
+                                                    "<span class='price'>"+SalleSport.price +"</span>"+
+                                                "</div>"+
+                            "<div >"+
+                            "<span class='adresse'>"+  SalleSport.adressSalle +"</span>"+
+                            "</div>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>";
+
+
+
+
+
+
+
+
+                            $("#result").html(text+" </div> </div>");
+
+
+                        });
+                    });
+            })
+        </script>
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+    <div class="section small_pt pb_70">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="heading_s1 text-center">
+                        <h2>Chosir votre salle</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="result">
+                <div class="col-12">
+                    <div class="tab-style1">
+                        <ul class="nav nav-tabs justify-content-center" role="tablist">
+                            <li class="nav-item">
+
+                            </li>
+                            <li class="nav-item">
+
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+                    </div>
+                    {% for SalleSport in sallesS %}
+                    <div class="tab-content"    >
+                        <div class="tab-pane fade show active" id="arrival" role="tabpanel" aria-labelledby="arrival-tab">
+                            <div class="row" >
+                                <div class="col-lg-7 col-md-4 col-6">
+                                    <div class="product">
+                                        <div class="salle_img">
+                                            <a href="">
+                                                <img height="250" width="250" src="{{asset ('images/salles/'~ SalleSport.imageName)}} ">
+                                            </a>
+                                            <div class="product_action_box">
+                                                <ul class="list_none pr_action_btn">
+
+
+                                                    <li><a href="{{ path('salle_detaille',{'id':SalleSport.id}) }}" class=""><i class="icon-magnifier-add"></i></a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                        <div class="product_price">
+                                            <span class="price">{{ SalleSport.nomSalle }}</span>
+
+
+                                            <div class="rating_wrap">
+                                                <div >
+                                                    <span class="price">{{ SalleSport.price }}DT</span>
+                                                </div>
+
+                                                <div >
+                                                    <span class="adresse">{{   SalleSport.adressSalle }}</span>
+                                                </div>
+
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                    </div>
+
+
+
+
+
+  {% endfor %}
+            </div>
+        </div>
+    </div>
+
+                {{ knp_pagination_render(sallesS) }}
+{% endblock %}
+

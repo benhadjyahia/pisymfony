@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Planning{% endblock %}
+
+{% block body  %}
+    <!-- Latest news section -->
+    <div class="latest-news-section">
+        <div class="ln-title">Latest News</div>
+        <div class="news-ticker">
+            <div class="news-ticker-contant">
+                <div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
+        </div>
+    </div>
+    <!-- Latest news section end -->
+<body  style="background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-Fitness-Backgrounds.jpg');color: #c69500">
+  <div >
+      <h1 style="width: 50%;margin: auto">
+          <span style="color:#66CC66">R</span>
+          <sub>  <span style="color: #3f51b5">E</span></sub>
+          <span style="color:#FFCCCC">S</span>
+          <sub>  <span style="color:#FF0066">E</span></sub>
+          <span style="color:#FF0000">R</span>
+          <sub>   <span style="color:#66CC66">V</span></sub>
+          <span style="color:#3f51b5">A</span>
+          <sub>  <span style="color:#FFCCCC">T</span></sub>
+          <span style="color:#66CC66">I</span>
+          <sub>  <span style="color: #3f51b5">O</span></sub>
+          <span style="color:#FFCCCC">N</span>
+    </h1></div>
+  <div style="margin-left: 30%;margin-right: 30%">
+
+  {{ include('planning/_form.html.twig') }}
+  </div>
+
+    </body>
+{% endblock %}

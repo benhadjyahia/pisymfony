@@ -1,0 +1,89 @@
+
+
+
+
+
+{% extends 'base2.html.twig' %}
+
+{% block title %}Planning index{% endblock %}
+
+
+{% block body %}
+    <div style="margin-top:2%;">
+        <table>
+            <tr ><a style="margin-left:40%;color: #c69500;font-size:30px" href="{{ path('category_c_index') }}">categories</a> </tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('planning_index') }}">Planning</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('main') }}">calendrier</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('contactC') }}">contact</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('stats') }}">statistiques</a></tr>
+        </table>
+    </div>
+    <h1  style="width:50%;margin:auto;font-size: 50px;">
+        <span style="color:#66CC66">P</span>
+        <sub>  <span style="color: #3f51b5">L</span></sub>
+        <span style="color:#FFCCCC">A</span>
+        <sub>  <span style="color:#FF0066">N</span></sub>
+        <span style="color:#FF0000">N</span>
+        <sub>   <span style="color:#66CC66">I</span></sub>
+        <span style="color:#3f51b5">N</span>
+        <sub>  <span style="color:#FFCCCC">G</span></sub>
+    </h1>
+    <body>
+
+
+    <table class="table table-hover" style="margin-top:5%; border: unset" >
+                        <thead >
+                        <tr >
+                            <th style="color: #c69500">Id</th>
+                            <th style="color: #c69500">Nom</th>
+                            <th style="color: #c69500">Prenom</th>
+                            <th style="color: #c69500">Telephone</th>
+                            <th style="color: #c69500">Email</th>
+                            <th style="color: #c69500">Cin</th>
+
+                            <th style="color: #c69500">start</th>
+                            <th style="color: #c69500">end</th>
+                            <th style="color: #c69500">AllDay</th>
+                            <th style="color: #c69500">background</th>
+                            <th style="color: #c69500">border</th>
+                            <th style="color: #c69500">text</th>
+                            <th style="color: #c69500">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody style="background:transparent;">
+                        {% for planning in plannings %}
+                            <tr >
+                                <td >{{ planning.id }}</td>
+                                <td>{{ planning.nom }}</td>
+                                <td>{{ planning.prenom }}</td>
+                                <td>{{ planning.telephone }}</td>
+                                <td>{{ planning.email }}</td>
+                                <td>{{ planning.cin }}</td>
+
+
+                                <td>{{ planning.start ? planning.start|date('Y-m-d H:i') : '' }}</td>
+                                <td>{{ planning.end ? planning.end|date('Y-m-d H:i') : '' }}</td>
+                                <td>{{ planning.allday }}</td>
+                                <td>{{ planning.background }}</td>
+                                <td>{{ planning.border}}</td>
+                                <td>{{ planning.text}}</td>
+                                <td>{{ planning.description}}</td>
+                                <td>
+                                    <a   class="fa fa-bars"  style="color: #3f51b5;font-size:25px"  href="{{ path('planning_show', {'id': planning.id}) }}"></a>
+                                </td>
+                                <td>
+                                    <a   class="fa fa-edit" style="color: #3f51b5 ;font-size:25px" href="{{ path('planning_edit', {'id': planning.id}) }}"></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+    </div>
+                    <a  class="fa fa-plus" style="font-size: 25px;margin-left:18%" href=" {{ path('planning_new') }}"> Ajouter</a>
+
+    </body>
+{% endblock %}

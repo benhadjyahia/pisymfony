@@ -1,0 +1,34 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit Planning{% endblock %}
+
+{% block body %}
+
+    <div >
+
+
+    <h1 style="width:50%;margin:auto">
+        <span style="color:#66CC66">P</span>
+        <sub>  <span style="color: #3f51b5">L</span></sub>
+        <span style="color:#FFCCCC">A</span>
+        <sub>  <span style="color:#FF0066">N</span></sub>
+        <span style="color:#FF0000">N</span>
+        <sub>   <span style="color:#66CC66">I</span></sub>
+        <span style="color:#3f51b5">N</span>
+        <sub>  <span style="color:#FFCCCC">G</span></sub>
+    </h1>
+    </div>
+
+<div style="margin-top:6%;color: #8a6d3b;background-image: url('https://getwallpapers.com/wallpaper/full/1/9/6/53562.jpg')" >
+
+
+        {{ include('planning/_form.html.twig', {'button_label': 'Update'}) }} </div>
+
+              <div style="margin-left: 50%">    {{ include('planning/_delete_form.html.twig') }}</div>
+
+<div>
+    <a  class="fa fa-home" style="font-size:50px;color:#ba54f5;width:50%;margin-top:5%" href="{{ path('planning_index') }}"></a>
+
+</div>
+
+{% endblock %}

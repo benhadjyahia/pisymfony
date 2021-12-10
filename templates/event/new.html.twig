@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}   evenement {% endblock %}
+
+{% block body %}
+
+    <h1  style="color: #FFFFFF">ajouter un Evenement</h1>
+
+    {{ include('event/_form.html.twig') }}
+<button class="btn">
+    <a class="fas fa-list" style="color: #FFFFFF" href="{{ path('event_index') }}"> lista    </a>
+</button>
+
+{% endblock %}

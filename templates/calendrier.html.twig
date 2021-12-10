@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}welcome{% endblock %}</title>
+    {% block stylesheets%}{% endblock %}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" integrity="sha256-16PDMvytZTH9heHu9KBPjzrFTaoner60bnABykjNiM0=" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+<div style="margin-top:1%;">
+    <table>
+        <tr ><a style="margin-left:40%;color: #c69500;font-size:30px" href="{{ path('category_c_index') }}">categories</a> </tr>
+        <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('planning_index') }}">Planning</a></tr>
+        <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('main') }}">calendrier</a></tr>
+        <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('contactC') }}">contact</a></tr>
+        <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('stats') }}">statistiques</a></tr>
+    </table>
+</div>
+
+{% block body %}{% endblock %}
+
+
+ <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js" integrity="sha256-XOMgUu4lWKSn8CFoJoBoGd9Q/OET+xrfGYSo+AKpFhE=" crossorigin="anonymous"></script>
+
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>

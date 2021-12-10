@@ -1,0 +1,44 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <h1>Evenement</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th style="color: #FFFFFF">Nom evenement</th>
+                <td>{{ evenement.NomEvent }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF" >Adresse evenement</th>
+                <td>{{ evenement.AdresseEvent }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Num evenement</th>
+                <td>{{ evenement.NumEvent }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Date evenement</th>
+                <td>{{ evenement.DateEvent ? evenement.DateEvent|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF">Categorie</th>
+                <td>{{ evenement.category.titre }}</td>"
+            </tr>
+            <tr>
+                <th style="color: #FFFFFF"> image  </th>
+                <td><img height="100" width="100" src="{{asset ('images/evnt/'~ evenement.imageName)}} "></td>
+            </tr>
+        </tbody>
+    </table>
+<button class="btn">
+    <a class="fa fa-bars" style="color: #FFFFFF" href="{{ path('event_index') }}"> lista </a>
+</button>
+    <button class="btn">
+    <a class="fa fa-edit" style="color: #FFFFFF" href="{{ path('event_edit', {'id': evenement.id}) }}">modifier </a>
+    </button>
+    {{ include('event/_delete_form.html.twig') }}
+{% endblock %}

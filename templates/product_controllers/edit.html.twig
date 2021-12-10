@@ -1,0 +1,10 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Edit Product{% endblock %}
+{% block body %}
+    <h1>Edit Product</h1>
+<body style="color: #c69500">
+    {{ include('product_controllers/_form.html.twig', {'button_label': 'Update'}) }}
+    <a  class="fa fa-home " style="font-size:48px;color:#ba54f5;margin-left: 15%"  href="{{ path('product_controllers_index') }}"></a>
+    {{ include('product_controllers/_delete_form.html.twig') }}
+    <body/>
+{% endblock %}

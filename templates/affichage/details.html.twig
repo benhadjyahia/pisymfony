@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+<h1>Evenement</h1>
+
+<table class="table">
+    <tbody>
+
+    <tr>
+        <th style="color: #1e2329">Nom evenement</th>
+        <td>{{ evenement.NomEvent }}</td>
+    </tr>
+    <tr>
+        <th style="color: #1e2329" >Adresse evenement</th>
+        <td>{{ evenement.AdresseEvent }}</td>
+    </tr>
+    <tr>
+        <th style="color: #1e2329">Num evenement</th>
+        <td>{{ evenement.NumEvent }}</td>
+    </tr>
+    <tr>
+        <th style="color: #1e2329">Date evenement</th>
+        <td>{{ evenement.DateEvent ? evenement.DateEvent|date('Y-m-d') : '' }}</td>
+    </tr>
+    <tr>
+
+        <th style="color: #1e2329"> image  </th>
+        <td><img height="100" width="100" src="{{asset ('images/evnt/'~ evenement.imageName)}} "></td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+    <div align="middle">
+    <button class="btn" style="background: #f0b90b">
+        <a class="fa fa-bars" style="color: #FFFFFF" href="{{ path('affichage') }}"> retour a la liste des evenements </a>
+    </button>
+    <button id ="a" class="btn" style="background: red">
+        <a class="fa fa-bars" style="color: #FFFFFF" > reserver</a>
+    </button>
+    </div>
+    {% block javascripts %}
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $('#a').on('click', function() {
+        
+                
+  $.ajax({
+  method: "POST",
+  url: "http://127.0.0.1:8000/res/reservation",
+  data: { email: "saifnaloufi50@gmail.com", // app.user.username
+          numero :"+21653335809"  //app.user.num
+             }
+})
+  .done(function( msg ) {
+      if(msg == "true") {
+          alert(" votre reservation est bien recus! ");
+          window.location.replace("http://127.0.0.1:8000/affichage");
+          
+      } 
+
+  } )
+        });
+ </script>
+
+{% endblock %}
+{% endblock %}

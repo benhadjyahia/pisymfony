@@ -1,0 +1,13 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New Category{% endblock %}
+
+{% block body %}
+<body style="color: #c69500">
+    <h1>Create new Category</h1>
+
+    {{ include('category_controllers/_form.html.twig') }}
+
+    <a class="fa fa-home " style="font-size:48px;color:#ba54f5;margin-left: 15%"  href="{{ path('category_controllers_index') }}"></a>
+</body>
+{% endblock %}

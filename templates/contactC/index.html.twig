@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}contact{% endblock %}
+
+{% block body %}
+    <div style="margin-top:2%;">
+        <table>
+            <tr ><a style="margin-left:40%;color: #c69500;font-size:30px" href="{{ path('category_c_index') }}">categories</a> </tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('planning_index') }}">Planning</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('main') }}">calendrier</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('contactC') }}">contact</a></tr>
+            <tr> <a style="margin-left:3%; color: #c69500;font-size: 30px" href="{{ path('stats') }}">statistiques</a></tr>
+        </table>
+    </div>
+{% for message in app.flashes('message')%}
+    <div class="alert alert-success" role="alert">
+
+        {{ message }}
+
+    </div>
+    {% endfor %}
+    <div  style="background-image: url('https://www.tmstechnic.com/wp-content/uploads/2018/08/iletisim.png');color: #c69500">
+   <h1> <span style="color:#66CC66">H</span>
+    <sub>  <span style="color: #3f51b5">E</span></sub>
+    <span style="color:#FFCCCC">L</span>
+    <sub>  <span style="color:#FF0066">L</span></sub>
+    <span style="color:#FF0000">O</span>
+    <sub>   <span style="color:#66CC66">!</span></sub>
+   </h1>
+        <div style="margin-left: 30%;margin-right: 30%">
+    {{ form (contactForm) }}
+        </div>
+    </div>
+
+{% endblock %}

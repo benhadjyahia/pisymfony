@@ -1,0 +1,84 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Product index{% endblock %}
+{% block body %}
+
+
+
+
+{{ form_start(form) }}
+    <div class="form-row align-items-end">
+        <div class="col">
+            {{ form_row(form.nom) }}
+        </div >
+         <div class="col">
+             <div class="form-group">
+                 <button type="submit" class="btn btn-success">Recherche</button>
+             </div>
+         </div>
+    </div>
+    {{ form_end(form) }}
+
+
+
+
+
+
+
+    <!-- top-area End -->
+<section id="feature" class="feature">
+    <div class="container">
+        <div class="section-header">
+            <h2>products</h2>
+            <div class="feature-content">
+                <div class="container">
+                    <div class="section-header">
+                    </div><!--/.section-header-->
+                    <div class="feature-content">
+                        <div class="boxs">
+                            <div class="row">
+    {% for product in products %}
+        <div class="col-sm-3">
+            <div class="single-feature">
+                <img src="{{vich_uploader_asset(product, 'imageFile')}}" >
+                <div class="single-feature-txt text-center">
+
+           
+                    <h3 style="color: #c69500">Nom : {{ product.NomP }}</h3>
+                    <h3 style="color: #c69500">Marque : {{ product.MarqueP }}</h3>
+                    <h3 style="color: #c69500">Prix : {{ product.PrixP }} : D</h3>
+                    <h3 style="color: #c69500">Quantite : {{ product.QuantiteP }}</h3>
+                    <h3 style="color: #c69500">categroy : {{ product.categorie }}</h3>
+
+                    <a class="fa fa-bars" href="{{ path('product_controllers_show', {'id': product.id}) }}"></a>
+                    <a class="fa fa-edit" href="{{ path('product_controllers_edit', {'id': product.id}) }}"></a>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.container-->
+            </div>
+        </div>
+    </div><!--/.container-->
+
+</section>
+    <a  class="fa fa-home " style="font-size:48px;color:#ba54f5;margin-left: 15%"  href="{{ path('product_controllers_index') }}"></a>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

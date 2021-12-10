@@ -1,0 +1,74 @@
+{% extends 'base3.html.twig' %}
+{% block title %}Product index{% endblock %}
+{% block body %}
+
+    <!-- top-area End -->
+    <div class="jumbotron text-xl-center">
+        <h1>MASLAG PRODUCTS</h1>
+    </div>
+    <div class="col-md-3">
+        {% include 'product_controllers/_filtre.html.twig' with {form:form} only %}
+    </div>
+    <section id="feature" class="feature">
+        <div class="container">
+            <div class="section-header">
+                <h2>products</h2>
+                <a style="font-size:20px;color: #0f172a;margin-left: 90%"  href="{{ path('products_list') }}">Recherche</a>
+                <div class="feature-content">
+                    <div class="container">
+                        <div class="section-header">
+                        </div><!--/.section-header-->
+                        <div class="feature-content">
+                            <div class="boxs">
+                                <div class="row">
+                                    {% for product in products %}
+                                        <div class="col-sm-3">
+                                            <div class="single-feature">
+                                                <div class="single-blog">
+                                                    <div class="single-blog-img">
+                                                        <a href="{{ path('product1_controllers1_show', {'id': product.id}) }}"><img  src="{{vich_uploader_asset(product, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto; border-radius: 20px; border: 2px solid lightgoldenrodyellow; "></a>
+                                                    </div>
+                                                </div>
+                                                <div class="single-feature-txt text-center">
+                                                    <p>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+                                                        <span class="feature-review">(45 review)</span>
+                                                    </p>
+                                                    <h5>{{ product.NomP }}</h5>
+                                                    <h5>{{ product.MarqueP }}</h5>
+                                                    <h5>{{ product.PrixP }} D</h5>
+                                                    <h5>{{ product.categorie }}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/.container-->
+                </div>
+            </div>
+        </div><!--/.container-->
+
+    </section>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

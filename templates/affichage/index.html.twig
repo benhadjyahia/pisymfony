@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <h4>bienvenue sur la page accueil</h4>
+
+    <div class="form-row align-items-end" >
+        <div class="col">
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+            <input id="a" type="text">
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $('#a').on('keydown', function(e) {
+            if(e.keyCode != 8) {
+                     sear = $("#a").val() + e.key;
+            }
+            else {
+                sear = $("#a").val().substring(0,$("#a").val().length - 1); 
+            }
+                
+  $.ajax({
+  method: "POST",
+  url: "http://127.0.0.1:8000/search2",
+  data: { name: sear }
+})
+  .done(function( msg ) {
+      
+      
+        $("#result").html("");
+         text = "";
+         if (msg[0].empty == 1) {
+          t = "Aucun evenement ne correspond aux termes de recherche spécifiés";
+        
+          var isContains = $('#result').text().indexOf(t) > -1;
+                if(!isContains && $("#a").val() != "") {
+                          text = "<div><h3>  Aucun evenement ne correspond aux termes de recherche spécifiés </h3></div>"+"<br>";
+
+           $("#result").html(text+$("#result").html());
+
+            }
+                            if(isContains && $("#a").val() == "") {
+var ret = $("#result").val().replace(t,'');
+           $("#result").html(ret); }
+
+
+      }
+
+      $.each(msg, function( index, evenement ) {
+       
+          text = text + "<div class='card col-md-4' style='width: 18rem;' >"+
+           "<div class='card-body'>"+
+                    "<h5 class='card-title'>"+ evenement.NomEvent +" </h5>"+
+                    "<h5 class='card-title'>"+ evenement.AdresseEvent+"</h5>"+
+                    "<h5 class='card-title'>"+ evenement.NumEvent +"</h5>"+
+
+                    "<h5 class='card-title'>"+ evenement.DateEvent+"</h5>"+
+                    "<h5><img height='100' width='100' src='images/evnt/"+ evenement.imageName+"' ></h5>"+
+                    "<button class='btn' style='background: #f0b90'>"+
+                        "<a class='fas fa-eye' style='color: #FFFFFF' href='http://127.0.0.1:8000/"+evenement.id+"'> details </a>"+
+                    "</button> </div></div>";
+        $("#result").html(text);
+
+
+        });  
+  });
+})
+</script>
+     {% endblock %}
+
+
+    <div  class="row" id="result">
+        <br>
+        {% for evenement in evenement   %}
+            <div class="card col-md-4" style="width: 18rem;" >
+
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ evenement.NomEvent }}</h5>
+                    <h5 class="card-title">{{ evenement.AdresseEvent }}</h5>
+                    <h5 class="card-title">{{ evenement.NumEvent }}</h5>
+
+                    <h5 class="card-title">{{ evenement.DateEvent ? evenement.DateEvent|date('Y-m-d') : '' }}</h5>
+                    <h5><img height="100" width="100" src="{{asset ('images/evnt/'~ evenement.imageName)}} "></h5>
+                    <button class="btn" style="background: #f0b90b">
+                        <a class="fas fa-eye" style="color: #FFFFFF" href="{{ path('affichage_show', {'id': evenement.id}) }}"> details </a>
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        {% endfor %}
+        
+        {{ knp_pagination_render(evenement) }}
+        </div>
+
+{% endblock %}

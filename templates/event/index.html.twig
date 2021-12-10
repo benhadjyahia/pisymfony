@@ -1,0 +1,56 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Evenement index{% endblock %}
+
+{% block body %}
+    <h1>Evenement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_Event</th>
+                <th>Adresse_Event</th>
+                <th>Num_Event</th>
+                <th>Date_Event</th>
+                <th>Category</th>
+                <th></th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.id }}</td>
+                <td>{{ evenement.NomEvent }}</td>
+                <td>{{ evenement.AdresseEvent }}</td>
+                <td>{{ evenement.NumEvent }}</td>
+                <td>{{ evenement.DateEvent ? evenement.DateEvent|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement.category.titre }}</td>
+                <td><img height="100" width="100" src="{{asset ('images/evnt/'~ evenement.imageName)}} "></td>
+
+
+                <td>
+                    <button class="btn" >
+                    <a class="	fas fa-eye" style="color: #FFFFFF" href="{{ path('event_show', {'id': evenement.id}) }}"> afficher </a>
+                    </button>
+                    <button class="btn">
+                    <a class="	fas fa-edit" style="color: #FFFFFF" href="{{ path('event_edit', {'id': evenement.id}) }}"> modifier </a>
+                        <button class="btn">
+                            <a class="	fas fa-edit" style="color: #FFFFFF" href="{{ path('event_delete', {'id': evenement.id}) }}"> supprimer </a>
+                        </button>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<button class="btn">
+    <a class="fas fa-plus" style="color: #FFFFFF" href="{{ path('event_new') }}"> ajouter</a>
+</button>
+{% endblock %}

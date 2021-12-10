@@ -1,0 +1,52 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <h1 style="color: #c69500" >Category </h1>
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+<div class="container" >
+    <table class="table table-hover" style="background-image: url('https://getwallpapers.com/wallpaper/full/1/9/6/53562.jpg')">
+        <thead style="color: #c69500">
+            <tr style="color: #c69500">
+                <th style="color: #c69500">Id</th>
+                <th style="color: #c69500">Label</th>
+                <th style="color: #c69500">show</th>
+                <th style="color: #c69500" >edit</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.label }}</td>
+                <td>
+                    <a  class="fa fa-bars" href="{{ path('category_controllers_show', {'id': category.id}) }}"></a>
+
+                </td>
+                <td><a  class="fa fa-edit" href="{{ path('category_controllers_edit', {'id': category.id}) }}"></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="user-panel">
+    <a  class="fa fa-plus" href="{{ path('category_controllers_new') }}"></a>
+</div>
+<div class="user-panel">
+    <a style="color: #c69500"  href="{{ path('product_controllers_index') }}">product</a>
+</div>
+
+{% endblock %}

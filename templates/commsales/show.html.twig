@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commsales{% endblock %}
+
+{% block body %}
+    <h1>Commsales</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commsale.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ commsale.nom }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ commsale.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('commsales_index') }}">back to list</a>
+
+    <a href="{{ path('commsales_edit', {'id': commsale.id}) }}">edit</a>
+
+    {{ include('commsales/_delete_form.html.twig') }}
+{% endblock %}
